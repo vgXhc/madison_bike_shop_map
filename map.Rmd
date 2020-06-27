@@ -1,15 +1,12 @@
 ---
-title: ''
-output: html_document
----
-
----
-title: 'Is my local Wisconsin bike shop open?'
-output:
+title: 'Madison Area Bike Shops and Repair Stations'
+output: 
   html_document:
     self_contained: false
 ---
-Madison has a lot of bike shops (including mobile bike repair services), as well as a lot of repair stations in public places. Here is a map of all of them. If you have new information or found an error, please email [harald@madisonbikes.org](mailto:harald@madisonbikes.org).
+
+
+Madison and Dane County have a lot of bike shops (including mobile bike repair services), as well as a lot of repair stations in public places. Here is a map of all of them. If you have new information or found an error, please email [harald@madisonbikes.org](mailto:harald@madisonbikes.org). 
 
 
 
