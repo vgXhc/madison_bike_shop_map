@@ -11,36 +11,55 @@ output:
 ---
 Madison has a lot of bike shops (including mobile bike repair services), as well as a lot of repair stations in public places. Here is a map of all of them. If you have new information or found an error, please email [harald@madisonbikes.org](mailto:harald@madisonbikes.org).
 
-Last update: `r Sys.time()`
+
 
 ```{r echo=FALSE, results=FALSE, message=FALSE}
 library(leaflet)
 library(googlesheets4)
 library(tidyverse)
+library(sf)
 
 sheets_deauth()
 
+#read sheet with shop info
+df <- read_sheet("https://docs.google.com/spreadsheets/d/1qkA4_rs_VMDfjsd42Da_JP_2pchGulRiq_yR2tgXJhM/",
+                 col_types = "c-nncci__cccT_")#loading only relevant variables to improve performance
 
-df <- read_sheet("https://docs.google.com/spreadsheets/d/1TaghQIUjMTDf1R33BtGtUAwIYjfeoHTUf7wJjMg0O6M/edit?ts=5e790c29#gid=1069622854")
+# read repair stations file from City of Madison Open Data portal
+download.file("https://opendata.arcgis.com/datasets/76d43c3b570246bb98d6f44f0400c000_34.zip", "data/repair_stations.zip")
+unzip("data/repair_stations.zip", exdir = "./data")
+file.remove("data/repair_stations.zip")
+repair_stations <- st_read("data/Bike_Repair_Station.shp")
+
+repair_stations <- repair_stations %>% 
+  mutate(pop = paste0("<b>Repair station</b><br>",Descriptio)) %>% 
+  select(pop)
 
 
 shops <- df %>% 
   rename(name = `Shop Name`) %>% 
   mutate(Status = replace_na(Status, "unknown")) %>% 
   mutate(pop = paste0("<b>",name, "</b><br>",
+                      "Address: ", Address, ", ", City, "<br>",
                       "Phone: ", Phone, "<br>",
-                      "Website: ", Website, "<br>",
-                      "Operating Status: ", Status))
+                      "Website: <a href=\"", Website, "\">", Website, "</a><br>"))
 ```
 
 
 ```{r echo=FALSE, warning=FALSE}
 
-
+shop_icon <- makeAwesomeIcon(icon = "bicycle",
+                         library = "fa")
+repair_icon <- makeAwesomeIcon(icon = "wrench",
+                               library = "fa")
 
 shops %>% 
   leaflet(width = "90%") %>% 
   addProviderTiles(provider = "Stamen.TonerLite") %>%
-  addMarkers(lng = ~Long, lat = ~Lat, popup = ~pop)
+  addAwesomeMarkers(lng = ~Long, lat = ~Lat, popup = ~pop, icon = shop_icon) %>%
+  addAwesomeMarkers(data = repair_stations, popup = ~pop, icon = repair_icon)
+  
 ```
+Last update: `r Sys.time()`
 
+Data: [City of Madison OpenData Portal (repair stations)](https://data-cityofmadison.opendata.arcgis.com/), Madison Bikes
