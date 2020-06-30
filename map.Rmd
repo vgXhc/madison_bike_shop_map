@@ -1,8 +1,9 @@
 ---
 title: 'Madison Area Bike Shops and Repair Stations'
 output: 
-  html_document:
+  html_fragment:
     self_contained: false
+    lib_dir: lib 
 ---
 
 
@@ -57,6 +58,7 @@ shops %>%
   addAwesomeMarkers(data = repair_stations, popup = ~pop, icon = repair_icon)
   
 ```
+
 Last update: `r Sys.time()`
 
 Data: [City of Madison OpenData Portal (repair stations)](https://data-cityofmadison.opendata.arcgis.com/), Madison Bikes
