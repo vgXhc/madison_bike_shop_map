@@ -1,17 +1,15 @@
 ---
 title: 'Madison Area Bike Shops and Repair Stations'
 output: 
-  html_fragment:
-    self_contained: false
-    lib_dir: lib 
+  html_fragment
 ---
 
 
-Madison and Dane County have a lot of bike shops (including mobile bike repair services), as well as a lot of repair stations in public places. Here is a map of all of them. If you have new information or found an error, please email [harald@madisonbikes.org](mailto:harald@madisonbikes.org). 
+Madison and Dane County have a lot of bike shops (including mobile bike repair services), as well as a lot of repair stations in public places. Here is a map of all(?) of them. If you have new information or found an error, please email [harald@madisonbikes.org](mailto:harald@madisonbikes.org). 
 
 
 
-```{r echo=FALSE, results=FALSE, message=FALSE}
+```{r echo=FALSE, results=FALSE, message=FALSE, warning=FALSE}
 library(leaflet)
 library(googlesheets4)
 library(tidyverse)
@@ -23,8 +21,11 @@ gs4_deauth()
 df <- read_sheet("https://docs.google.com/spreadsheets/d/1qkA4_rs_VMDfjsd42Da_JP_2pchGulRiq_yR2tgXJhM/",
                  col_types = "c-nncci__cccT_")#loading only relevant variables to improve performance
 
-# read repair stations file from City of Madison Open Data portal
-download.file("https://opendata.arcgis.com/datasets/76d43c3b570246bb98d6f44f0400c000_34.zip", "data/repair_stations.zip")
+# read repair stations file from City of Madison Open Data portal; URL eventually expires and needs to be updated
+# from https://data-cityofmadison.opendata.arcgis.com/datasets/bike-repair-station/
+# URL can't be extracted directly anymore, and so you have to download the file and then "copy download link"
+# in the Firefox download manager
+download.file("https://opendata.arcgis.com/api/v3/datasets/76d43c3b570246bb98d6f44f0400c000_34/downloads/data?format=shp&spatialRefId=4326&where=1%3D1", "data/repair_stations.zip")
 unzip("data/repair_stations.zip", exdir = "./data")
 file.remove("data/repair_stations.zip")
 repair_stations <- st_read("data/Bike_Repair_Station.shp")
@@ -49,13 +50,14 @@ shops <- df %>%
 shop_icon <- makeAwesomeIcon(icon = "bicycle",
                          library = "fa")
 repair_icon <- makeAwesomeIcon(icon = "wrench",
-                               library = "fa")
+                               library = "fa",
+                               markerColor = "lightgray")
 
 shops %>% 
   leaflet(width = "90%") %>% 
-  addProviderTiles(provider = "Stamen.TonerLite") %>%
+  addProviderTiles(provider = "OpenStreetMap.Mapnik") %>%
   addAwesomeMarkers(lng = ~Long, lat = ~Lat, popup = ~pop, icon = shop_icon) %>%
-  addAwesomeMarkers(data = repair_stations, popup = ~pop, icon = repair_icon)
+  addAwesomeMarkers(data = repair_stations, popup = ~pop, icon = repair_icon, clusterOptions = TRUE)
   
 ```
 

@@ -11,6 +11,13 @@ The Madison Bikes website runs on Wordpress, which means there are some manual s
 
 ### Initial set-up
 1. Set the `YAML` header to output a `html_document` and knit
+```
+title: 'Madison Area Bike Shops and Repair Stations'
+output: 
+  html_document:
+    self_contained: false
+    lib_dir: lib
+```
 1. Copy the `lib` folder into your Wordpress site root directory via `ssh` (i.e. the libraries will be `madisonbikes.org/lib`)
 1. Create a new root-level page on Wordpress
 1. Add an `html` block in the Wordpress editor
@@ -19,5 +26,5 @@ The Madison Bikes website runs on Wordpress, which means there are some manual s
 1. Copy all content between the `<body> ... </body>` tags into the block after the `<script>`s.
 
 ### Updates
-1. Change `YAML` header to `html_fragment` and knit
+1. Change `YAML` header output format to `html_fragment` and knit
 1. Copy `map.html` content and paste it into the `<body>` section on Wordpress
