@@ -1,12 +1,244 @@
+<!DOCTYPE html>
 
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Madison Area Bike Shops and Repair Stations</title>
+
+<script src="lib/header-attrs-2.29/header-attrs.js"></script>
+<script src="lib/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="lib/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="lib/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="lib/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="lib/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="lib/navigation-1.1/tabsets.js"></script>
+<link href="lib/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="lib/highlightjs-9.12.0/highlight.js"></script>
+<script src="lib/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<link href="lib/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="lib/leaflet-1.3.1/leaflet.js"></script>
+<link href="lib/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="lib/proj4-2.6.2/proj4.min.js"></script>
+<script src="lib/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="lib/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="lib/leaflet-binding-2.2.2/leaflet.js"></script>
+<script src="lib/leaflet-providers-2.0.0/leaflet-providers_2.0.0.js"></script>
+<script src="lib/leaflet-providers-plugin-2.2.2/leaflet-providers-plugin.js"></script>
+<link href="lib/leaflet-awesomemarkers-2.0.3/leaflet.awesome-markers.css" rel="stylesheet" />
+<script src="lib/leaflet-awesomemarkers-2.0.3/leaflet.awesome-markers.min.js"></script>
+<link href="lib/fontawesome-4.7.0/font-awesome.min.css" rel="stylesheet" />
+<link href="lib/leaflet-markercluster-1.0.5/MarkerCluster.css" rel="stylesheet" />
+<link href="lib/leaflet-markercluster-1.0.5/MarkerCluster.Default.css" rel="stylesheet" />
+<script src="lib/leaflet-markercluster-1.0.5/leaflet.markercluster.js"></script>
+<script src="lib/leaflet-markercluster-1.0.5/leaflet.markercluster.freezable.js"></script>
+<script src="lib/leaflet-markercluster-1.0.5/leaflet.markercluster.layersupport.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Madison Area Bike Shops and Repair
+Stations</h1>
+
+</div>
 
 
 <p>Madison and Dane County have a lot of bike shops (including mobile
 bike repair services), as well as a lot of repair stations in public
 places. Here is a map of all(?) of them. If you have new information or
-found an error, please email <a href="mailto:harald@madisonbikes.org">harald@madisonbikes.org</a>.</p>
-<div id="htmlwidget-0dc4eff20e3819cd1839" style="width:90%;height:480px;" class="leaflet html-widget "></div>
-<script type="application/json" data-for="htmlwidget-0dc4eff20e3819cd1839">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addProviderTiles","args":["OpenStreetMap.Mapnik",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addAwesomeMarkers","args":[[43.0811956,43.107003,43.0678968,43.052805,43.0561589,43.1120106,43.0525659,43.1192681,43.017245,43.0459311,43.0759262,43.0681522,43.0434889,43.0850506,43.0566258,43.0937567,43.0787273,43.0860418,43.1213308,43.0609608,43.0767177,43.0577134758511,43.0961128,43.0082,42.9178728,43.1828491,42.9876508,42.9782103,43.3377833,42.9166197076351,43.0173421910503],[-88.9128134,-89.363075,-89.4052845,-89.485398,-89.3884469,-89.3633466,-89.496658,-89.3205271,-89.423629,-89.3962073,-89.3750433,-89.3945036,-89.4055805,-89.3757903,-89.512654,-89.3474059,-89.3239167,-89.36067,-89.3080452,-89.5250304,-89.4008193,-89.4283616480977,-89.4959962,-89.7383,-89.2206006,-89.2115948,-89.545913,-89.5409547,-89.3793245,-89.3713441230806,-89.8317322450967],{"icon":"bicycle","markerColor":"blue","iconColor":"white","spin":false,"squareMarker":false,"iconRotate":0,"font":"monospace","prefix":"fa"},null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},["<b>The Bikemobile<\/b><br>Address: 213 W. Madison St, Lake Mills<br>Phone: 608-213-7476<br>Website: <a href=\"https://thebikemobile.com/\">https://thebikemobile.com/<\/a><br>","<b>Black Saddle Bike Shop<\/b><br>Address: 601 N Sherman Ave, Madison<br>Phone: (608) 283-9568<br>Website: <a href=\"https://blacksaddlebikeshop.com/\">https://blacksaddlebikeshop.com/<\/a><br>","<b>Budget Bicycle Center<\/b><br>Address: 1230 Regent St, Madison<br>Phone: (608) 251-8413<br>Website: <a href=\"https://budgetbicyclectr.com/\">https://budgetbicyclectr.com/<\/a><br>","<b>Crazy Lenny's Ebikes<\/b><br>Address: 6017 Odana Rd, Madison<br>Phone: (608) 276-5921<br>Website: <a href=\"https://www.crazylennysebikes.com/\">https://www.crazylennysebikes.com/<\/a><br>","<b>Cronometro<\/b><br>Address: 338 W Lakeside St, Madison<br>Phone: (608) 243-7760<br>Website: <a href=\"http://cronometro.com/\">http://cronometro.com/<\/a><br>","<b>DreamBikes<\/b><br>Address: 1131 N Sherman Ave, Madison<br>Phone: (608) 416-5536<br>Website: <a href=\"https://dream-bikes.org/\">https://dream-bikes.org/<\/a><br>","<b>Erik's Bike and Board - West<\/b><br>Address: 6610 Seybold Rd, Madison<br>Phone: 608-278-9000<br>Website: <a href=\"https://www.eriksbikeshop.com/\">https://www.eriksbikeshop.com/<\/a><br>","<b>Erik's Bike and Board - East<\/b><br>Address: 3813 E Washington Ave, Madison<br>Phone: 608-244-9825<br>Website: <a href=\"https://www.eriksbikeshop.com/\">https://www.eriksbikeshop.com/<\/a><br>","<b>Wheel & Sprocket Fitchburg<\/b><br>Address: 2970 Cahill Main Unit 101, Fitchburg<br>Phone: NA<br>Website: <a href=\"https://www.wheelandsprocket.com/about/fitchburg-wi-pg666.htm\">https://www.wheelandsprocket.com/about/fitchburg-wi-pg666.htm<\/a><br>","<b>Freewheel Bike Shop<\/b><br>Address: 1804 S. Park St #6, Madison<br>Phone: 262-673-7303<br>Website: <a href=\"https://freewheelbikes.org/\">https://freewheelbikes.org/<\/a><br>","<b>Machinery Row Bicycles<\/b><br>Address: 601 Williamson St, Madison<br>Phone: (608) 442-5974<br>Website: <a href=\"https://machineryrowbicycles.com/\">https://machineryrowbicycles.com/<\/a><br>","<b>Motorless Motion Bicycles<\/b><br>Address: 640 W Washington Ave, Madison<br>Phone: (608) 443-0640<br>Website: <a href=\"https://motorlessmotionbicycles.com/\">https://motorlessmotionbicycles.com/<\/a><br>","<b>Neff Cycle Service<\/b><br>Address: 1490 Martin St, Madison<br>Phone: (608) 514-5393<br>Website: <a href=\"https://www.neffcycleservice.com/\">https://www.neffcycleservice.com/<\/a><br>","<b>Old Town Cycles<\/b><br>Address: 920 East Johnson St, Madison<br>Phone: (608) 259-8696<br>Website: <a href=\"http://www.oldtowncycles.com/\">http://www.oldtowncycles.com/<\/a><br>","<b>REI<\/b><br>Address: 7483 West Towne Ave, Madison<br>Phone: (608) 833-6680<br>Website: <a href=\"https://www.rei.com/stores/madison.html\">https://www.rei.com/stores/madison.html<\/a><br>","<b>Revolution Cycles<\/b><br>Address: 2330 Atwood Ave, Madison<br>Phone: (608) 244-0009<br>Website: <a href=\"https://www.revolutioncycles.net/\">https://www.revolutioncycles.net/<\/a><br>","<b>Slow Roll Cycles<\/b><br>Address: 4118 Monona Dr, Madison<br>Phone: (608) 286-1176<br>Website: <a href=\"https://www.slowrollcycles.com/\">https://www.slowrollcycles.com/<\/a><br>","<b>The Cargo Bike Shop<\/b><br>Address: 1404 Williamson St,, Madison<br>Phone: (608) 373-4798<br>Website: <a href=\"https://www.facebook.com/thecargobikeshop/\">https://www.facebook.com/thecargobikeshop/<\/a><br>","<b>Trek Bicycle Store - East<\/b><br>Address: 1706 Eagan Road, Madison<br>Phone: 608-442-8735<br>Website: <a href=\"https://www.trekbikes.com/us/en_US/retail/madison_east/\">https://www.trekbikes.com/us/en_US/retail/madison_east/<\/a><br>","<b>Trek Bicycle Store - West<\/b><br>Address: 8108 Mineral Point Road, Madison<br>Phone: (608) 833-8735<br>Website: <a href=\"https://www.trekbikes.com/us/en_us/retail/madison_west/\">https://www.trekbikes.com/us/en_us/retail/madison_west/<\/a><br>","<b>UW-Madison Bicycle Resource Center<\/b><br>Address: 600 N Park St, Madison<br>Phone: na<br>Website: <a href=\"https://transportation.wisc.edu/bicycling/university-bicycle-resource-center/\">https://transportation.wisc.edu/bicycling/university-bicycle-resource-center/<\/a><br>","<b>Destination Bicycle<\/b><br>Address: 2603 Monroe St, Madison<br>Phone: NA<br>Website: <a href=\"https://destinationbicycle.com/\">https://destinationbicycle.com/<\/a><br>","<b>Wheel & Sprocket Middleton<\/b><br>Address: 6641 University Ave, Middleton<br>Phone: 608-820-1166<br>Website: <a href=\"https://www.wheelandsprocket.com/about/middleton-pg338.htm\">https://www.wheelandsprocket.com/about/middleton-pg338.htm<\/a><br>","<b>Trail This Bicycle Shop<\/b><br>Address: 103 S 2nd St, Mt Horeb<br>Phone: (608) 274-8447<br>Website: <a href=\"https://trailthis.com/\">https://trailthis.com/<\/a><br>","<b>Stoton Cycle<\/b><br>Address: 100 W Washington St, Stoughton<br>Phone: 608.877.1134<br>Website: <a href=\"http://stoughtoncycle.com/\">http://stoughtoncycle.com/<\/a><br>","<b>Sun City Cyclery & Skate<\/b><br>Address: 235 E Main St, Sun Prairie<br>Phone: 608-837-2453<br>Website: <a href=\"http://www.suncitycyclery.com/\">http://www.suncitycyclery.com/<\/a><br>","<b>Atkins Verona Bicycle Shoppe<\/b><br>Address: 517 Half Mile Rd, Verona<br>Phone: 608-845-6644<br>Website: <a href=\"https://www.atkinsbike.com/\">https://www.atkinsbike.com/<\/a><br>","<b>Rocket Velocafé<\/b><br>Address: 507 Bruce St, Verona<br>Phone: 608) 239-3837<br>Website: <a href=\"https://www.rocketvelocafe.com/bikeshop\">https://www.rocketvelocafe.com/bikeshop<\/a><br>","<b>Yellow Jersey<\/b><br>Address: 219 Main Street, Arlington<br>Phone: (608) 257-4737<br>Website: <a href=\"http://www.yellowjersey.org/\">http://www.yellowjersey.org/<\/a><br>","<b>Oregon Bicycle Company<\/b><br>Address: 201 Concord Dr, Oregon<br>Phone: NA<br>Website: <a href=\"https://www.oregonbicycleco.com/\">https://www.oregonbicycleco.com/<\/a><br>","<b>Blue Mounds Bicycle Works<\/b><br>Address: 11000 Division St, Blue Mounds<br>Phone: NA<br>Website: <a href=\"https://www.bluemoundsbicycleworks.com/\">https://www.bluemoundsbicycleworks.com/<\/a><br>"],null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addAwesomeMarkers","args":[[43.0721599078115,43.0461968441035,43.0238386020068,43.0381914787729,43.06621529715,43.020404861565,43.0261913540924,43.02710817618,43.0885941076703,43.0809784788015,43.0870103752453,43.0879903050306,43.0757615706663,43.0717734259567,43.0781602100681,43.0780493461748,43.07650205912,43.0753670580253,43.0761857054705,43.0735331803952,43.0741041679085,43.0767964755798,43.0683353812844,43.0663226150297,43.0918925253459,43.0446912954017,43.0737576262462,43.0832634058299,43.0719491555063,42.9873742122122,42.9973081065365,43.1260522228827,43.0386932467337,43.0376186956751,43.0768702633544,43.034683653261,43.0158543785939,43.0007935062927,43.0192029659431,43.0483438301762,42.9357828327303,43.0117603833464,43.1028296325699,43.1034325052858,43.0943691597962,43.0937682987768,43.0782869899022,43.0423381151546,43.031930729535,43.0775862890341,43.0392604203574,43.0211263787378,43.081594054412,43.0690067515907,43.1548527939489,43.1401260652813,43.0942292993348,43.0506907562882,43.0212282850435,43.0624407742685,43.0467561729956,43.0843927298269,43.0953895936124,43.191697090213,43.1918406360696,43.0080648411827,43.0287711317634,43.0681560221043],[-89.3852140417734,-89.4514514629219,-89.3742360543916,-89.3549088660655,-89.5014973330145,-89.4531727495595,-89.3436141797456,-89.3078803216014,-89.4367783833681,-89.3773923194956,-89.3660000504596,-89.3590464460701,-89.3751068288915,-89.3991493611948,-89.4149116944675,-89.4297021485573,-89.4262187811619,-89.4194384056645,-89.4125646122423,-89.4063455465477,-89.4011451610447,-89.4007377957254,-89.4002532418389,-89.3974606361023,-89.3555677766148,-89.3704142555682,-89.3816347642861,-89.3653216885441,-89.3338046899425,-89.5336389128308,-89.5178168641484,-89.325618872462,-89.3955691063073,-89.3780283387616,-89.4551151941571,-89.4589792752014,-89.424835096708,-89.398685096828,-89.4677642643124,-89.3373395445061,-89.3956350484438,-89.4736394873516,-89.5166464896221,-89.4902132987029,-89.4855221551884,-89.3482190657352,-89.3775278819083,-89.4503490952589,-89.4574144095588,-89.4162828375683,-89.4598656444682,-89.4771912654438,-89.3739544853917,-89.4540022906086,-89.2707957967704,-89.3855179527183,-89.3617457384191,-89.4819729075702,-89.4317064876937,-89.342562749832,-89.3546571745512,-89.3175246411981,-89.3369489239928,-89.4481570293686,-89.4569296144705,-89.7386845822951,-89.8437530217872,-89.3942582189174],{"icon":"wrench","markerColor":"lightgray","iconColor":"white","spin":false,"squareMarker":false,"iconRotate":0,"font":"monospace","prefix":"fa"},null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},["<b>Repair station<\/b><br>Dane County Parking Ramp. Restricted Access","<b>Repair station<\/b><br>Southwest Path at S. Midvale Blvd.","<b>Repair station<\/b><br>Capital City Trail at E. Clayton Rd. East of CTH MM","<b>Repair station<\/b><br>Capital City Trail at South Towne Rd.","<b>Repair station<\/b><br>Lussier Community Education Center","<b>Repair station<\/b><br>Dawley Bike Hub at Seminole Hwy.","<b>Repair station<\/b><br>Lake Farm Park Shelter","<b>Repair station<\/b><br>McDaniel Park","<b>Repair station<\/b><br>Eagle Heights Community Center\r\nEagle Heights Community Center","<b>Repair station<\/b><br>E. Mifflin St. Reynolds Building","<b>Repair station<\/b><br>S. Baldwin at E. Washington Ave.","<b>Repair station<\/b><br>Capital City Trail at S. Thornton Ave.","<b>Repair station<\/b><br>Machinery Row Bicycles","<b>Repair station<\/b><br>East Campus Mall","<b>Repair station<\/b><br>Kronshage Dr. Conover House","<b>Repair station<\/b><br>Health Sciences Learning Center","<b>Repair station<\/b><br>WARF Building","<b>Repair station<\/b><br>Veterinary Medicine","<b>Repair station<\/b><br>Microbial Sciences","<b>Repair station<\/b><br>N. Charter St. and University Ave.","<b>Repair station<\/b><br>Chadbourne Hall","<b>Repair station<\/b><br>University Bicycle Resource Center in Helen C. White Garage","<b>Repair station<\/b><br>21 N. Park St. Welcome and Visitor Center in Parking Garage","<b>Repair station<\/b><br>Bayview Community Center Parking Lot","<b>Repair station<\/b><br>Monona State Bank on Atwood Ave.","<b>Repair station<\/b><br>Capital City Trail south end John Nolen Drive Service Rd.","<b>Repair station<\/b><br>10 E. Doty St. In Block 89 Parking Ramp","<b>Repair station<\/b><br>1129 E. Wilson. Air pump only inside Working Draft Beer Co.","<b>Repair station<\/b><br>Schluter Park Shelter","<b>Repair station<\/b><br>Hometown Junction Park. Military Ridge Trail at S. Main St.","<b>Repair station<\/b><br>Ice Age Trail between Cross Country Rd. and Military Ridge Trail","<b>Repair station<\/b><br>3698 Kinsman Blvd. On wall outside Karben4 Brewing.  Work stand only.","<b>Repair station<\/b><br>810 W. Badger Rd. Centro Hispano of Dane County","<b>Repair station<\/b><br>501 W. Badger Rd. Badger Rock Middle School","<b>Repair station<\/b><br>Blackhawk Bike Path at Locust Dr.","<b>Repair station<\/b><br>Southwest Path at U-Haul","<b>Repair station<\/b><br>Capital City Trail at McKee Rd. and Fish Hatchery Rd.","<b>Repair station<\/b><br>North Park Lane","<b>Repair station<\/b><br>Cannonball Trail at Sprocket Dr.","<b>Repair station<\/b><br>Metropolitan Lane - Grand Corsssing Park, Monona","<b>Repair station<\/b><br>Lerner Conservation Park","<b>Repair station<\/b><br>Military Ridge at General Beverage","<b>Repair station<\/b><br>Highway 12 Path, Pheasant Branch Creek","<b>Repair station<\/b><br>Amherst Road","<b>Repair station<\/b><br>Marshall Park","<b>Repair station<\/b><br>Capital City Trail at Jackson St.","<b>Repair station<\/b><br>The Beacon","<b>Repair station<\/b><br>Cherokee Middle School","<b>Repair station<\/b><br>Luna's Grocery","<b>Repair station<\/b><br>Elm Drive Bike Shelter","<b>Repair station<\/b><br>Hammersley Road at W. Beltline","<b>Repair station<\/b><br>King James Way Park","<b>Repair station<\/b><br>Robinia Courtyard. Air pump only.","<b>Repair station<\/b><br>Hamptons at Hilldale","<b>Repair station<\/b><br>Capitol Dr","<b>Repair station<\/b><br>Kennedy Heights","<b>Repair station<\/b><br>E.Johnson St and N First St","<b>Repair station<\/b><br>West Towne Path at Tokay Blvd.","<b>Repair station<\/b><br>NA","<b>Repair station<\/b><br>Winnequah Park","<b>Repair station<\/b><br>Off Broadway Drafthouse","<b>Repair station<\/b><br>Royster Commons","<b>Repair station<\/b><br>South Fair Oaks Ave. and Emmet St.","<b>Repair station<\/b><br>Waunakee Veterans Memorial","<b>Repair station<\/b><br>Wanabike Waunakee","<b>Repair station<\/b><br>Mount Horeb Museum","<b>Repair station<\/b><br>Blue Mounds State Park","<b>Repair station<\/b><br>640 W. West Washington Ave. Air hose at window."],null,true,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[42.9166197076351,43.3377833],"lng":[-89.8437530217872,-88.9128134]}},"evals":[],"jsHooks":[]}</script>
-<p>Last update: 2023-12-19 13:36:49.513885</p>
+found an error, please email <a
+href="mailto:harald@madisonbikes.org">harald@madisonbikes.org</a>.</p>
+<div id="htmlwidget-4fc50d102c3ebe6ecb0b" style="width:90%;height:480px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-4fc50d102c3ebe6ecb0b">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addProviderTiles","args":["OpenStreetMap.Mapnik",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addAwesomeMarkers","args":[[43.107003,43.0678968,43.052805,43.05609,43.1120106,43.0525659,43.1192681,43.0759262,43.0681522,43.0434889,43.0850506,43.0566258,43.0937567,43.0787273,43.0860418,43.1213308,43.0609608,43.0767177,43.0577134758511,43.0961128,43.0082,42.9178728,43.1828491,42.9876508,43.3377833,42.9166197076351,43.0173421910503,43.1271897,43.0667028],[-89.36307499999999,-89.40528449999999,-89.485398,-89.3977,-89.3633466,-89.496658,-89.32052710000001,-89.3750433,-89.39450359999999,-89.4055805,-89.37579030000001,-89.512654,-89.3474059,-89.3239167,-89.36067,-89.3080452,-89.52503040000001,-89.40081929999999,-89.42836164809771,-89.49599619999999,-89.7383,-89.2206006,-89.2115948,-89.545913,-89.3793245,-89.3713441230806,-89.8317322450967,-89.3621062,-89.4037885],{"icon":"bicycle","markerColor":"blue","iconColor":"white","spin":false,"squareMarker":false,"iconRotate":0,"font":"monospace","prefix":"fa"},null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},["<b>Black Saddle Bike Shop<\/b><br>Address: 601 N Sherman Ave, Madison<br>Phone: (608) 283-9568<br>Website: <a href=\"https://blacksaddlebikeshop.com/\">https://blacksaddlebikeshop.com/<\/a><br>","<b>Budget Bicycle Center<\/b><br>Address: 1230 Regent St, Madison<br>Phone: (608) 251-8413<br>Website: <a href=\"https://budgetbicyclectr.com/\">https://budgetbicyclectr.com/<\/a><br>","<b>Crazy Lenny's Ebikes<\/b><br>Address: 6017 Odana Rd, Madison<br>Phone: (608) 276-5921<br>Website: <a href=\"https://www.crazylennysebikes.com/\">https://www.crazylennysebikes.com/<\/a><br>","<b>Cronometro<\/b><br>Address: 841 W Lakeside St, Madison<br>Phone: (608) 243-7760<br>Website: <a href=\"http://cronometro.com/\">http://cronometro.com/<\/a><br>","<b>DreamBikes<\/b><br>Address: 1131 N Sherman Ave, Madison<br>Phone: (608) 416-5536<br>Website: <a href=\"https://dream-bikes.org/\">https://dream-bikes.org/<\/a><br>","<b>Erik's Bike and Board - West<\/b><br>Address: 6610 Seybold Rd, Madison<br>Phone: 608-278-9000<br>Website: <a href=\"https://www.eriksbikeshop.com/\">https://www.eriksbikeshop.com/<\/a><br>","<b>Erik's Bike and Board - East<\/b><br>Address: 3813 E Washington Ave, Madison<br>Phone: 608-244-9825<br>Website: <a href=\"https://www.eriksbikeshop.com/\">https://www.eriksbikeshop.com/<\/a><br>","<b>Machinery Row Bicycles<\/b><br>Address: 601 Williamson St, Madison<br>Phone: (608) 442-5974<br>Website: <a href=\"https://machineryrowbicycles.com/\">https://machineryrowbicycles.com/<\/a><br>","<b>Motorless Motion Bicycles<\/b><br>Address: 640 W Washington Ave, Madison<br>Phone: (608) 443-0640<br>Website: <a href=\"https://motorlessmotionbicycles.com/\">https://motorlessmotionbicycles.com/<\/a><br>","<b>Neff Cycle Service<\/b><br>Address: 1490 Martin St, Madison<br>Phone: (608) 514-5393<br>Website: <a href=\"https://www.neffcycleservice.com/\">https://www.neffcycleservice.com/<\/a><br>","<b>Old Town Cycles<\/b><br>Address: 920 East Johnson St, Madison<br>Phone: (608) 259-8696<br>Website: <a href=\"http://www.oldtowncycles.com/\">http://www.oldtowncycles.com/<\/a><br>","<b>REI<\/b><br>Address: 7483 West Towne Ave, Madison<br>Phone: (608) 833-6680<br>Website: <a href=\"https://www.rei.com/stores/madison.html\">https://www.rei.com/stores/madison.html<\/a><br>","<b>Revolution Cycles<\/b><br>Address: 2330 Atwood Ave, Madison<br>Phone: (608) 244-0009<br>Website: <a href=\"https://www.revolutioncycles.net/\">https://www.revolutioncycles.net/<\/a><br>","<b>Slow Roll Cycles<\/b><br>Address: 4118 Monona Dr, Madison<br>Phone: (608) 286-1176<br>Website: <a href=\"https://www.slowrollcycles.com/\">https://www.slowrollcycles.com/<\/a><br>","<b>The Cargo Bike Shop<\/b><br>Address: 1404 Williamson St,, Madison<br>Phone: (608) 373-4798<br>Website: <a href=\"https://www.facebook.com/thecargobikeshop/\">https://www.facebook.com/thecargobikeshop/<\/a><br>","<b>Trek Bicycle Store - East<\/b><br>Address: 1706 Eagan Road, Madison<br>Phone: 608-442-8735<br>Website: <a href=\"https://www.trekbikes.com/us/en_US/retail/madison_east/\">https://www.trekbikes.com/us/en_US/retail/madison_east/<\/a><br>","<b>Trek Bicycle Store - West<\/b><br>Address: 8108 Mineral Point Road, Madison<br>Phone: (608) 833-8735<br>Website: <a href=\"https://www.trekbikes.com/us/en_us/retail/madison_west/\">https://www.trekbikes.com/us/en_us/retail/madison_west/<\/a><br>","<b>UW-Madison Bicycle Resource Center<\/b><br>Address: 600 N Park St, Madison<br>Phone: na<br>Website: <a href=\"https://transportation.wisc.edu/bicycling/university-bicycle-resource-center/\">https://transportation.wisc.edu/bicycling/university-bicycle-resource-center/<\/a><br>","<b>Destination Bicycle<\/b><br>Address: 2603 Monroe St, Madison<br>Phone: 608.283.9383<br>Website: <a href=\"https://destinationbicycle.com/\">https://destinationbicycle.com/<\/a><br>","<b>Wheel & Sprocket Middleton<\/b><br>Address: 6641 University Ave, Middleton<br>Phone: 608-820-1166<br>Website: <a href=\"https://www.wheelandsprocket.com/about/middleton-pg338.htm\">https://www.wheelandsprocket.com/about/middleton-pg338.htm<\/a><br>","<b>Trail This Bicycle Shop<\/b><br>Address: 103 S 2nd St, Mt Horeb<br>Phone: (608) 274-8447<br>Website: <a href=\"https://trailthis.com/\">https://trailthis.com/<\/a><br>","<b>Stoton Cycle<\/b><br>Address: 100 W Washington St, Stoughton<br>Phone: 608.877.1134<br>Website: <a href=\"http://stoughtoncycle.com/\">http://stoughtoncycle.com/<\/a><br>","<b>Sun City Cyclery & Skate<\/b><br>Address: 235 E Main St, Sun Prairie<br>Phone: 608-837-2453<br>Website: <a href=\"http://www.suncitycyclery.com/\">http://www.suncitycyclery.com/<\/a><br>","<b>Atkins Verona Bicycle Shoppe<\/b><br>Address: 517 Half Mile Rd, Verona<br>Phone: 608-845-6644<br>Website: <a href=\"https://www.atkinsbike.com/\">https://www.atkinsbike.com/<\/a><br>","<b>Yellow Jersey<\/b><br>Address: 219 Main Street, Arlington<br>Phone: (608) 257-4737<br>Website: <a href=\"http://www.yellowjersey.org/\">http://www.yellowjersey.org/<\/a><br>","<b>Oregon Bicycle Company<\/b><br>Address: 201 Concord Dr, Oregon<br>Phone: 608-291-0363<br>Website: <a href=\"https://www.oregonbicycleco.com/\">https://www.oregonbicycleco.com/<\/a><br>","<b>Blue Mounds Bicycle Works<\/b><br>Address: 11000 Division St, Blue Mounds<br>Phone: (608) 800-2928<br>Website: <a href=\"https://www.bluemoundsbicycleworks.com/\">https://www.bluemoundsbicycleworks.com/<\/a><br>","<b>Cool Bikes North<\/b><br>Address: 1861 Northport Drive, Madison<br>Phone: 608-230-6717<br>Website: <a href=\"https://www.coolbikesnorth.com/\">https://www.coolbikesnorth.com/<\/a><br>","<b>Freewheel<\/b><br>Address: 31 S Mills St, Madison<br>Phone: NA<br>Website: <a href=\"https://freewheelbikes.org/\">https://freewheelbikes.org/<\/a><br>"],null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addAwesomeMarkers","args":[[43.07215990781154,43.04619684410346,43.0238386020068,43.03819147877289,43.06621529715002,43.02040486156501,43.02619135409236,43.02710817618001,43.08859410767026,43.08097847880148,43.08701037524529,43.08799030503063,43.07576157066628,43.07177342595669,43.07816021006815,43.07804934617482,43.07650205911999,43.07536705802534,43.07618570547051,43.07353318039516,43.07410416790851,43.07679647557976,43.06833538128436,43.06632261502973,43.09189252534589,43.04469129540174,43.07375762624622,43.08326340582992,43.07194915550625,42.98737421221225,42.99730810653645,43.12605222288271,43.03869324673366,43.03761869567515,43.07687026335435,43.03468365326098,43.01585437859389,43.00079350629273,43.01920296594312,43.04834383017617,42.93578283273033,43.01176038334636,43.10282963256985,43.1034325052858,43.09436915979615,43.09376829877676,43.07828698990219,43.04233811515456,43.03193072953503,43.07758628903414,43.03926042035744,43.02112637873783,43.08159405441197,43.06900675159071,43.15485279394889,43.14012606528131,43.09422929933481,43.05069075628825,43.0212282850435,43.06244077426853,43.04675617299564,43.08439272982694,43.09538959361237,43.19169709021299,43.19184063606958,43.00806484118272,43.02877113176345,43.06815602210429,43.00268006840002],[-89.38521404177335,-89.45145146292192,-89.37423605439163,-89.35490886606549,-89.50149733301447,-89.45317274955954,-89.3436141797456,-89.30788032160143,-89.43677838336808,-89.37739231949557,-89.36600005045956,-89.35904644607007,-89.37510682889148,-89.39914936119477,-89.41491169446749,-89.42970214855731,-89.42621878116185,-89.41943840566452,-89.41256461224235,-89.40634554654766,-89.40114516104468,-89.40073779572536,-89.40025324183894,-89.39746063610234,-89.35556777661485,-89.37041425556818,-89.38163476428615,-89.36532168854409,-89.33380468994247,-89.53363891283084,-89.51781686414837,-89.32561887246197,-89.39556910630731,-89.37802833876158,-89.45511519415707,-89.45897927520141,-89.42483509670795,-89.39868509682796,-89.46776426431239,-89.33733954450612,-89.39563504844382,-89.47363948735158,-89.51664648962208,-89.49021329870293,-89.48552215518842,-89.34821906573522,-89.37752788190825,-89.45034909525886,-89.45741440955881,-89.41628283756833,-89.4598656444682,-89.47719126544375,-89.37395448539174,-89.45400229060863,-89.2707957967704,-89.38551795271827,-89.3617457384191,-89.4819729075702,-89.43170648769372,-89.34256274983198,-89.35465717455118,-89.31752464119815,-89.33694892399284,-89.44815702936859,-89.4569296144705,-89.73868458229515,-89.84375302178717,-89.39425821891736,-89.01955510390691],{"icon":"wrench","markerColor":"lightgray","iconColor":"white","spin":false,"squareMarker":false,"iconRotate":0,"font":"monospace","prefix":"fa"},null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},["<b>Repair station<\/b><br>Dane County Parking Ramp. Restricted Access","<b>Repair station<\/b><br>Southwest Path at S. Midvale Blvd.","<b>Repair station<\/b><br>Capital City Trail at E. Clayton Rd. East of CTH MM","<b>Repair station<\/b><br>Capital City Trail at South Towne Rd.","<b>Repair station<\/b><br>Lussier Community Education Center","<b>Repair station<\/b><br>Dawley Bike Hub at Seminole Hwy.","<b>Repair station<\/b><br>Lake Farm Park Shelter","<b>Repair station<\/b><br>McDaniel Park","<b>Repair station<\/b><br>Eagle Heights Community Center\r\nEagle Heights Community Center","<b>Repair station<\/b><br>E. Mifflin St. Reynolds Building","<b>Repair station<\/b><br>S. Baldwin at E. Washington Ave.","<b>Repair station<\/b><br>Capital City Trail at S. Thornton Ave.","<b>Repair station<\/b><br>Machinery Row Bicycles","<b>Repair station<\/b><br>East Campus Mall","<b>Repair station<\/b><br>Kronshage Dr. Conover House","<b>Repair station<\/b><br>Health Sciences Learning Center","<b>Repair station<\/b><br>WARF Building","<b>Repair station<\/b><br>Veterinary Medicine","<b>Repair station<\/b><br>Microbial Sciences","<b>Repair station<\/b><br>N. Charter St. and University Ave.","<b>Repair station<\/b><br>Chadbourne Hall","<b>Repair station<\/b><br>University Bicycle Resource Center in Helen C. White Garage","<b>Repair station<\/b><br>21 N. Park St. Welcome and Visitor Center in Parking Garage","<b>Repair station<\/b><br>Bayview Community Center Parking Lot","<b>Repair station<\/b><br>Monona State Bank on Atwood Ave.","<b>Repair station<\/b><br>Capital City Trail south end John Nolen Drive Service Rd.","<b>Repair station<\/b><br>10 E. Doty St. In Block 89 Parking Ramp","<b>Repair station<\/b><br>1129 E. Wilson. Air pump only inside Working Draft Beer Co.","<b>Repair station<\/b><br>Schluter Park Shelter","<b>Repair station<\/b><br>Hometown Junction Park. Military Ridge Trail at S. Main St.","<b>Repair station<\/b><br>Ice Age Trail between Cross Country Rd. and Military Ridge Trail","<b>Repair station<\/b><br>3698 Kinsman Blvd. On wall outside Karben4 Brewing.  Work stand only.","<b>Repair station<\/b><br>810 W. Badger Rd. Centro Hispano of Dane County","<b>Repair station<\/b><br>501 W. Badger Rd. Badger Rock Middle School","<b>Repair station<\/b><br>Blackhawk Bike Path at Locust Dr.","<b>Repair station<\/b><br>Southwest Path at U-Haul","<b>Repair station<\/b><br>Capital City Trail at McKee Rd. and Fish Hatchery Rd.","<b>Repair station<\/b><br>North Park Lane","<b>Repair station<\/b><br>Cannonball Trail at Sprocket Dr.","<b>Repair station<\/b><br>Metropolitan Lane - Grand Corsssing Park, Monona","<b>Repair station<\/b><br>Lerner Conservation Park","<b>Repair station<\/b><br>Military Ridge at General Beverage","<b>Repair station<\/b><br>Highway 12 Path, Pheasant Branch Creek","<b>Repair station<\/b><br>Amherst Road","<b>Repair station<\/b><br>Marshall Park","<b>Repair station<\/b><br>Capital City Trail at Jackson St.","<b>Repair station<\/b><br>The Beacon","<b>Repair station<\/b><br>Cherokee Middle School","<b>Repair station<\/b><br>Luna's Grocery","<b>Repair station<\/b><br>Elm Drive Bike Shelter","<b>Repair station<\/b><br>Hammersley Road at W. Beltline","<b>Repair station<\/b><br>King James Way Park","<b>Repair station<\/b><br>Robinia Courtyard. Air pump only.","<b>Repair station<\/b><br>Hamptons at Hilldale","<b>Repair station<\/b><br>Capitol Dr","<b>Repair station<\/b><br>Kennedy Heights","<b>Repair station<\/b><br>E.Johnson St and N First St","<b>Repair station<\/b><br>West Towne Path at Tokay Blvd.","<b>Repair station<\/b><br>NA","<b>Repair station<\/b><br>Winnequah Park","<b>Repair station<\/b><br>Off Broadway Drafthouse","<b>Repair station<\/b><br>Royster Commons","<b>Repair station<\/b><br>South Fair Oaks Ave. and Emmet St.","<b>Repair station<\/b><br>Waunakee Veterans Memorial","<b>Repair station<\/b><br>Wanabike Waunakee","<b>Repair station<\/b><br>Mount Horeb Museum","<b>Repair station<\/b><br>Blue Mounds State Park","<b>Repair station<\/b><br>640 W. West Washington Ave. Air hose at window.","<b>Repair station<\/b><br>Camrock County Park"],null,true,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[42.9166197076351,43.3377833],"lng":[-89.84375302178717,-89.01955510390691]}},"evals":[],"jsHooks":[]}</script>
+<p>Last update: 2025-11-09 10:04:33.008536</p>
 <p>Data: <a href="https://data-cityofmadison.opendata.arcgis.com/">City
 of Madison OpenData Portal (repair stations)</a>, Madison Bikes</p>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

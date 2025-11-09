@@ -1,7 +1,9 @@
 ---
 title: 'Madison Area Bike Shops and Repair Stations'
 output: 
-  html_fragment
+  html_document:
+    self_contained: false
+    lib_dir: lib
 ---
 
 
